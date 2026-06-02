@@ -2,6 +2,8 @@
 
 A modern Next.js portfolio with **3D WebGL** scenes (React Three Fiber): an interactive hero particle network and a scroll-driven **career journey** path through milestones.
 
+Portfolio Link : [portfolio-bhupinder.vercel.app](https://portfolio-bhupinder.vercel.app/)
+
 ## Tech stack
 
 - [Next.js 16](https://nextjs.org) (App Router)
