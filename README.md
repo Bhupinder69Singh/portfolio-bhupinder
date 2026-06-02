@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bhupinder Singh Sahmey — Portfolio
 
-## Getting Started
+A modern Next.js portfolio with **3D WebGL** scenes (React Three Fiber): an interactive hero particle network and a scroll-driven **career journey** path through milestones.
 
-First, run the development server:
+## Tech stack
+
+- [Next.js 16](https://nextjs.org) (App Router)
+- React 19, TypeScript, Tailwind CSS 4
+- [Framer Motion](https://www.framer.com/motion/) for UI motion
+- [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) + [drei](https://github.com/pmndrs/drei) + Three.js for 3D
+
+## Local development
 
 ```bash
+cd portfolio
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Deploy free on Vercel (recommended for 3D)
 
-To learn more about Next.js, take a look at the following resources:
+GitHub Pages requires static export and limits Next.js features. **Vercel Hobby (free)** runs this project with full WebGL support.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push this repo to GitHub (root can be the monorepo; set Vercel **Root Directory** to `portfolio` if needed).
+2. Sign in at [vercel.com](https://vercel.com) with GitHub.
+3. **Add New Project** → import your repository.
+4. Framework preset: **Next.js**. Root directory: `portfolio` (if the app lives in that folder).
+5. No environment variables required for the 3D portfolio.
+6. Deploy — every push to `main` redeploys automatically.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Your live URL will look like `https://your-project.vercel.app`.
 
-## Deploy on Vercel
+### Optional: custom domain
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+In the Vercel project → **Settings** → **Domains**, add your domain and follow DNS instructions.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Accessibility & performance
+
+- **Mobile** and **`prefers-reduced-motion`**: 2D timeline fallback (no WebGL) for the career section; hero uses a static gradient instead of the 3D canvas.
+- Career 3D canvas **lazy-loads** when the section enters the viewport.
+- Canvas **DPR** capped at 1.5 for smoother performance on mid-range devices.
+
+## Project structure
+
+| Path | Purpose |
+|------|---------|
+| `app/page.tsx` | Main page sections |
+| `components/Hero.tsx` | Hero + 3D backdrop |
+| `components/CareerJourney.tsx` | 3D scroll journey orchestrator |
+| `components/CareerJourneyFallback.tsx` | 2D timeline fallback |
+| `components/three/` | R3F scenes and canvas wrappers |
+| `lib/journeyData.ts` | Career milestone data |
+
+## Learn more
+
+- [Next.js deployment docs](https://nextjs.org/docs/app/building-your-application/deploying)
+- [Vercel + Next.js](https://vercel.com/docs/frameworks/nextjs)
